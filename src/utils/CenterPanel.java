@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CenterPanel extends JPanel {
-    private double rate;//拉伸比例
-    private JComponent c; //显示的组件
-    private boolean strech; //是否拉伸
+    private double rate;//stretch rate
+    private JComponent c; //the components to show
+    private boolean stretch; //stretch or not
 
     public CenterPanel(double rate, boolean strech){
         this.setLayout(null);
         this.rate = rate;
-        this.strech = strech;
+        this.stretch = strech;
     }
     public CenterPanel(double rate){
         this(rate, true);
@@ -22,7 +22,7 @@ public class CenterPanel extends JPanel {
             Dimension containerSize = this.getSize();
             Dimension componentSize = c.getPreferredSize();
 
-            if (strech){
+            if (stretch){
                 c.setSize((int) (containerSize.width * rate), (int) (containerSize.height * rate));
             }
             else {
@@ -46,6 +46,16 @@ public class CenterPanel extends JPanel {
     }
 
     public static void main(String[] args) {
+
+        JFrame f = new JFrame();
+        f.setSize(200, 200);
+        f.setLocationRelativeTo(null);
+        CenterPanel cp = new CenterPanel(0.85,true);
+        f.setContentPane(cp);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+        JButton b  =new JButton("abc");
+        cp.show(b);
 
     }
 }
