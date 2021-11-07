@@ -57,7 +57,7 @@ public class CircleProgressBar extends JPanel {
     public int getProgress(){
         return progress;
     }
-    
+
     public void setProgress(int progress) {
         if (progress >= minimumProgress && progress <= maximumProgress)
             this.progress = progress;

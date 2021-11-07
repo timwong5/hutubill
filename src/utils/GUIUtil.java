@@ -72,4 +72,21 @@ public class GUIUtil {
             e.printStackTrace();
         }
     }
+
+    public static void showPanel(JPanel p, double stretch) {
+        GUIUtil.useLNF();
+        JFrame jFrame = new JFrame();
+        jFrame.setSize(500, 500);
+        jFrame.setLocationRelativeTo(null);
+        CenterPanel cp = new CenterPanel(stretch);
+        jFrame.setContentPane(cp);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setVisible(true);
+        cp.show(p);
+    }
+
+    //default showPanel
+    public static void showPanel(JPanel p) {
+        showPanel(p,0.85);
+    }
 }
