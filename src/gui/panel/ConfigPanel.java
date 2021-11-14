@@ -1,12 +1,14 @@
 package gui.panel;
 
+import gui.listener.ConfigListener;
+import service.ConfigService;
 import utils.ColorUtil;
 import utils.GUIUtil;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ConfigPanel extends JPanel {
+public class ConfigPanel extends WorkingPanel {
     static{
         GUIUtil.useLNF();
     }
@@ -43,5 +45,20 @@ public class ConfigPanel extends JPanel {
 
     public static void main(String[] args) {
         GUIUtil.showPanel(ConfigPanel.instance);
+    }
+
+    @Override
+    public void updateData() {
+        String budget = new ConfigService().get(ConfigService.budget);
+        String mysqlPath = new ConfigService().get(ConfigService.mysqlPath);
+        tfBudget.setText(budget);
+        tfMysqlPath.setText(mysqlPath);
+        tfBudget.grabFocus();
+    }
+
+    @Override
+    public void addListener() {
+        ConfigListener l = new ConfigListener();
+        bSubmit.addActionListener(l);
     }
 }
